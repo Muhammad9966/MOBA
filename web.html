@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Mapel</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    /* GRID CARD */
+    .class-container {
+      padding: 2rem;
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(4, 280px);
+      gap: 2rem;
+    }
+
+    /* CARD */
+    .class-card {
+      background-color: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+      transition: transform 0.25s;
+      cursor: pointer;
+      width: 280px;
+    }
+
+    .class-card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* BANNER */
+    .class-banner {
+      height: 120px;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-end;
+      font-size: 1.05rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .class-banner img {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    /* TEXT */
+    .class-info {
+      padding: 1rem;
+    }
+
+    .teacher {
+      font-size: 0.9rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="class-container" id="classContainer"></div>
+
+  <script>
+    const classes = [
+      { 
+        name: "BASDAT", 
+        teacher: "Muhammad Farhan S.Kom", 
+        color: "#2d6a4f",
+        img: "https://i.ibb.co.com/Df0Jfms/Bazma.png"
+      },
+      { 
+        name: "BAPR", 
+        teacher: "Parni Handayani S.Tr.T.", 
+        color: "#0077b6",
+        img: "https://i.ibb.co.com/Df0Jfms/Bazma.png"
+      },
+      { 
+        name: "SEJARAH", 
+        teacher: "Sri Mulyati M.Pd.", 
+        color: "#8e3200",
+        img: "https://i.ibb.co.com/Df0Jfms/Bazma.png"
+      },
+      { 
+        name: "PJOK", 
+        teacher: "Samsudin", 
+        color: "#008000",
+        img: "https://i.ibb.co.com/Df0Jfms/Bazma.png"
+      }
+    ];
+
+    const container = document.getElementById("classContainer");
+
+    classes.forEach(cls => {
+      const card = document.createElement("div");
+      card.className = "class-card";
+
+      card.innerHTML = `
+        <div class="class-banner" style="background: ${cls.color}">
+          <img src="${cls.img}" alt="Class Logo">
+          ${cls.name}
+        </div>
+        <div class="class-info">
+          <div class="teacher">${cls.teacher}</div>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

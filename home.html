@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda - MOBA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f6f8;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: 0.3s;
+      zoom: 1.5;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 0;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+    }
+
+    .sidebar h2 img {
+      width: 140px;
+      height: auto;
+      margin-left: 2px;
+      vertical-align: middle;
+      border: none;
+      background: none;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      padding: 0.8rem 1.2rem;
+      cursor: pointer;
+      color: #3c4043;
+      font-weight: 500;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+    }
+
+    .submenu {
+      display: none;
+      list-style: none;
+      padding-left: 2rem;
+    }
+
+    .submenu li {
+      padding: 6px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .submenu li:hover {
+      color: #1a73e8;
+    }
+
+    .has-submenu.active .submenu {
+      display: block;
+    }
+
+    .arrow {
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .has-submenu.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .sidebar.collapsed ul li span,
+    .sidebar.collapsed h2 span {
+      display: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 220px;
+      right: 0;
+      height: 60px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      transition: left 0.3s ease;
+      z-index: 10;
+    }
+
+    .navbar h1 {
+      font-size: 1.2rem;
+      color: #1a73e8;
+      margin: 0;
+    }
+
+    .user {
+      width: 40px;
+      height: 40px;
+      background-color: #1a73e8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .sidebar.collapsed ~ .navbar {
+      left: 60px;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      margin-left: 220px;
+      margin-top: 60px; /* karena ada navbar di atas */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: margin-left 0.3s ease;
+      padding-top: 60px;
+    }
+
+    .sidebar.collapsed ~ .main {
+      margin-left: 60px;
+    }
+
+    .welcome-text {
+      font-size: 4rem;
+      font-weight: 600;
+      color: #1a73e8;
+      text-align: center;
+      display: flex;
+      margin-top: 200px;
+    }
+
+    /* Responsif */
+    @media (max-width: 800px) {
+      .sidebar {
+        position: fixed;
+        left: -220px;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .navbar {
+        left: 0;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBOECzNJsJthgL31qcrg5dy8UrjorRZIicbA&" alt="Classroom Logo">
+    </h2>
+    <ul>
+      <li><a href="home.html">🏠 <span>Beranda</span></a></li>
+      <li class="has-submenu" id="kelasMenu">
+        <div class="menu-item">
+          📘 <span>Kelas</span>
+          <span class="arrow">▼</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="10.html">X-SIJA</a></li>
+          <li><a href="11.html">XI-SIJA</a></li>
+          <li><a href="12.html">XII-SIJA</a></li>
+        </ul>
+      </li>
+      <li><a href="web.html">💻 <span>Web</span></a></li>
+    </ul>
+  </div>
+
+  <div class="navbar">
+    <h1>Beranda</h1>
+    <div class="user">TI</div>
+  </div>
+
+  <div class="main">
+    <div class="welcome-text">Selamat Datang</div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const kelasMenu = document.getElementById("kelasMenu");
+
+    kelasMenu.addEventListener("click", () => {
+      kelasMenu.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>

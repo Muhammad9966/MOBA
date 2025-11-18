@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      zoom: 1.5;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    .sidebar h2 {
+      font-size: 16px;
+      margin: 0;
+      padding: 15px 20px;
+      color: #5f6368;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-item {
+      padding: 12px 20px;
+      color: #202124;
+      font-size: 15px;
+      text-decoration: none;
+      display: block;
+      border-radius: 0 25px 25px 0;
+      transition: background 0.2s;
+    }
+
+    .menu-item:hover {
+      background: #f1f3f4;
+    }
+
+    .menu-item.active {
+      background: #e8f0fe;
+      color: #1967d2;
+      font-weight: 500;
+    }
+
+    /* Tombol kembali */
+    .back-icon {
+      width: 18px;
+      height: 18px;
+      stroke: #5f6368;
+      transition: transform 0.2s;
+    }
+
+    .sidebar h2:hover .back-icon {
+      transform: translateX(-3px);
+      stroke: #1967d2;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .header {
+      background-color: #4a7856;
+      color: white;
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-repeat: no-repeat;
+      background-position: right 60px center;
+      background-size: 120px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .content {
+      padding: 20px 60px;
+    }
+
+    .content h2 {
+      color: #3c4043;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .modul-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modul-card {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: #202124;
+    }
+
+    .modul-card:hover {
+      transform: scale(1.02);
+    }
+
+    .modul-title {
+      font-weight: 500;
+    }
+
+    .modul-date {
+      color: #5f6368;
+      font-size: 13px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="10.html" style="text-decoration:none;">
+      <h2>
+        <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Kembali
+      </h2>
+    </a>
+
+    <a href="anda.html" class="menu-item">ANDA</a>
+    <a href="netfun.html" class="menu-item">NETFUN</a>
+    <a href="informatika.html" class="menu-item">Informatika</a>
+    <a href="ddg.html" class="menu-item">DDG</a>
+    <a href="bapr.html" class="menu-item">BAPR</a>
+    <a href="seldev10.html" class="menu-item">SELDEV</a>
+    <a href="pai10.html" class="menu-item">PAI</a>
+    <a href="mtk10.html" class="menu-item active">Matematika</a>
+    <a href="ipas.html" class="menu-item">IPAS</a>
+    <a href="bindo10.html" class="menu-item">Bahasa Indonesia</a>
+    <a href="seni.html" class="menu-item">Seni Musik</a>
+    <a href="sejarah10.html" class="menu-item">Sejarah</a>
+    <a href="bing10.html" class="menu-item">Bahasa Inggris</a>
+    <a href="ppkn10.html" class="menu-item">PPKN</a>
+    <a href="pjok10.html" class="menu-item">PJOK</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <div class="header">
+      <h1>Matematika</h1>
+    </div>
+
+    <div class="content">
+      <h2>📘 Modul Pembelajaran</h2>
+      <div class="modul-list">
+        <a href="https://www.ruangguru.com/blog/matematika-kelas-8-cara-menyelesaikan-sistem-persamaan-linear-dua-variabel-spldv" class="modul-card"
+        target="_blank" 
+        rel="noopener noreferrer">
+          <div>
+            <div class="modul-title">SPLDV</div>
+            <div class="modul-date">10 November 2025</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

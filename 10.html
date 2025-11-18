@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOBA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f6f8;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: 0.3s;
+      zoom: 1.5;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 0;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      padding: 0 1.5rem;
+      margin-bottom: 1rem;
+      color: #3c4043;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .sidebar h2 img {
+     width: 140px;
+     height: auto;
+     margin-right: 1px;
+     margin-left: px;
+     vertical-align: middle;
+     border: none;        /* hilangkan garis pinggir */
+     background: none;    /* hilangkan latar */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      padding: 0.8rem 1.2rem;
+      cursor: pointer;
+      color: #3c4043;
+      font-weight: 500;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+    }
+
+    /* Submenu */
+    .submenu {
+      display: none;
+      list-style: none;
+      padding-left: 2rem;
+      background-color: #fff;
+    }
+
+    .submenu li {
+      padding: 6px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .submenu li:hover {
+      color: #1a73e8;
+    }
+
+    .has-submenu {
+      position: relative;
+    }
+
+    .has-submenu .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .has-submenu.active .submenu {
+      display: block;
+    }
+
+    .arrow {
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .has-submenu.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Collapse */
+    .sidebar.collapsed ul li span,
+    .sidebar.collapsed h2 span {
+      display: none;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      font-size: 1.2rem;
+      color: #3c4043;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .menu-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #3c4043;
+    }
+
+    header .user {
+      width: 40px;
+      height: 40px;
+      background-color: #1a73e8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Class Cards */
+    .class-container {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      transition: 0.3s;
+    }
+
+    .class-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .class-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .class-banner {
+      height: 90px;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: flex-end;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .class-info {
+      padding: 1rem;
+    }
+
+    .teacher {
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
+
+    /* Responsif */
+    @media (max-width: 800px) {
+      .sidebar {
+        position: fixed;
+        left: -220px;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .main {
+        flex: 1;
+      }
+
+      header h1 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <h2>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBOECzNJsJthgL31qcrg5dy8UrjorRZIicbA&" alt="Classroom Logo">
+    </h2>
+    <ul>
+      <li><a href="home.html">🏠 <span>Beranda</span></a></li>
+
+      <li class="has-submenu" id="kelasMenu">
+        <div class="menu-item">
+          📘 <span>Kelas</span>
+          <span class="arrow">▼</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="10.html">X-SIJA</a></li>
+          <li><a href="11.html">XI-SIJA</a></li>
+          <li><a href="12.html">XII-SIJA</a></li>
+        </ul>
+      </li>
+
+      <li><a href="web.html">💻 <span>Web</span></a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        X - SIJA
+      </h1>
+      <div class="user">10</div>
+    </header>
+
+    <div class="class-container" id="classContainer"></div>
+  </div>
+
+  <script>
+    const classes = [
+      { name: "ANDA", teacher: "Ristina Eka Salsabila S.Kom.", color: "#1a73e8", link: "anda.html" },
+      { name: "NETFUN", teacher: "Muhamad Dzikri Fauzan S.Kom.", color: "#264653", link: "netfun.html" },
+      { name: "Informatika", teacher: "Muhamad Dzikri Fauzan S.Kom.", color: "#f3722c", link: "informatika.html" },
+      { name: "DDG", teacher: "Fatimah Azzahra S.Pi.", color: "#9b5de5", link: "ddg.html" },
+      { name: "BAPR", teacher: "Mirza Bakti Sukaryana S.Pd.", color: "#3a86ff", link: "bapr.html" },
+      { name: "SELDEV", teacher: "Parni Handayani S.Tr.T.", color: "#48cae4", link: "seldev10.html" },
+      { name: "PAI", teacher: "Ahmad Dahlan S.Ag.", color: "#4a7856", link: "pai10.html" },
+      { name: "Matematika", teacher: "Miftahul Jannah S.Pd.", color: "#4a7856", link: "mtk10.html" },
+      { name: "IPAS", teacher: "Satya Tama Fahlevi S.Pd.", color: "#2ec4b6", link: "ipas.html" },
+      { name: "Bahasa Indonesia", teacher: "Ilham Syahbana Kusuma M.Pd.", color: "#ef233c", link: "bindo10.html" },
+      { name: "Seni Musik", teacher: "Satya Tama Fahlevi S.Pd.", color: "#663c04ad", link: "seni.html" },
+      { name: "Sejarah", teacher: "Indra Sujitno S.I.Kom.", color: "#b5651d", link: "sejarah10.html" },
+      { name: "Bahasa Inggris", teacher: "Fakhrudin M.Pd.", color: "#118ab2", link: "bing10.html" },
+      { name: "PPKN", teacher: "Indra Sujitno S.I.Kom.", color: "#d62828", link: "ppkn10.html" },
+      { name: "PJOK", teacher: "Fajar Julhijjah Lamablawa", color: "#ffbe0b", link: "pjok10.html" },
+    ];
+
+    const container = document.getElementById("classContainer");
+    const sidebar = document.getElementById("sidebar");
+    const menuBtn = document.getElementById("menuBtn");
+    const kelasMenu = document.getElementById("kelasMenu");
+
+    classes.forEach(cls => {
+      const card = document.createElement("a");
+      card.className = "class-card";
+      card.href = cls.link;
+      card.style.textDecoration = "none";
+      card.innerHTML = `
+        <div class="class-banner" style="background: ${cls.color}">
+          ${cls.name}
+        </div>
+        <div class="class-info">
+          <div class="teacher">${cls.teacher}</div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // Toggle sidebar
+    menuBtn.addEventListener("click", () => {
+      if (window.innerWidth > 800) {
+        sidebar.classList.toggle("collapsed");
+      } else {
+        sidebar.classList.toggle("active");
+      }
+    });
+
+    // Toggle submenu
+    kelasMenu.addEventListener("click", () => {
+      kelasMenu.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
